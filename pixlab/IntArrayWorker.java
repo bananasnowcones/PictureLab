@@ -118,5 +118,15 @@ public class IntArrayWorker
         }
         return max;
     }
+    
+  public int getColTotal(int n) {
+      int column = 0;
+      for(int[]row : matrix) {
+          column += row[n];
+          
+        }
+      return column;
+    }
 }
+    
  
