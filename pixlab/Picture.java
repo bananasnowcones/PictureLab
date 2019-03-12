@@ -187,14 +187,36 @@ public class Picture extends SimplePicture
     } 
   }
   
-  public void mirrorHorizontal() {
+  public void mirrorHorizontalBotToTop() {
     Pixel[][] pixels = this.getPixels2D();
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
-    int length = pixels[0].length;
-    for(int row = 0; row < 
-    }
+    Pixel topPixel = null;
+    Pixel bottomPixel = null;
+    int height = pixels.length;
+    for (int row = 0; row < height / 2; row++)
+        for (int col = 0; col < pixels[0].length; col++){
+            topPixel = pixels[row][col];
+            bottomPixel = pixels[height - 1 - row][col];
+            topPixel.setColor(bottomPixel.getColor());
+        }
+ }
   
+ public void mirrorDiagonal() {
+     Pixel[][]pixels = this.getPixels2D();
+     Pixel leftPixel = null;
+     Pixel rightPixel = null;
+     int max = pixels.length;
+
+     if (pixels[0].length > max) {
+         max = pixels[0].length;
+        }
+     for (int row = 0; row < max; row++) {
+         for( int col = 0; col <row; col ++) {
+             leftPixel = pixels[row][col];
+             rightPixel = pixels[col][row];
+             rightPixel.setColor(leftPixel.getColor());
+            }
+        }
+}
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
@@ -212,12 +234,15 @@ public class Picture extends SimplePicture
       {
         
         leftPixel = pixels[row][col];      
-        rightPixel = pixels[row]                       
-                         [mirrorPoint - col + mirrorPoint];
+        rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+        count++;
       }
     }
   }
+  public void mirrorArms() {
+     
+    }
   
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
@@ -226,8 +251,7 @@ public class Picture extends SimplePicture
     * @param startRow the start row to copy to
     * @param startCol the start col to copy to
     */
-  public void copy(Picture fromPic, 
-                 int startRow, int startCol)
+  public void copy(Picture fromPic,int startRow, int startCol)
   {
     Pixel fromPixel = null;
     Pixel toPixel = null;
