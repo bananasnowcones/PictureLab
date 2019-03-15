@@ -323,14 +323,11 @@ public class Picture extends SimplePicture
   public void createCollage() {
     Picture mareep = new Picture("mareep.jpg");
     Picture flower2 = new Picture("flower2.jpg");
-    this.copy(mareep,0,20);
-    this.copy(flower2,100,40);
-    this.copy(mareep,200,60);
+    this.copy(mareep,100,50,50,100,200,300);
+    this.copy(mareep,350,100,50,100,200,300);
     Picture flowerNoBlue = new Picture(flower2);
     flowerNoBlue.zeroBlue();
-    this.copy(flowerNoBlue,300,80);
-    this.copy(mareep,400,100);
-    this.copy(flower2,700,130);
+    
     this.mirrorVertical();
     //this.write("collage.jpg");
   }
